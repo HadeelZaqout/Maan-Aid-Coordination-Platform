@@ -1,0 +1,98 @@
+﻿@page "/Requests/Details/{id}"
+@model Donation.Pages.Requests.DetailsModel
+@{
+    ViewData["Title"] = "تفاصيل الطلب";
+}
+
+<div class="container mt-4">
+    <div class="theme-eyebrow eyebrow-beneficiary">لوحة المستفيد</div>
+    <div class="theme-card accent-beneficiary">
+        <div class="theme-card-header">
+            <h4 class="mb-0">تفاصيل طلب المساعدة</h4>
+        </div>
+        <div class="theme-card-body">
+            <dl class="row">
+                <dt class="col-sm-3">الفئة</dt>
+                <dd class="col-sm-9">@Model.DonationById.Category</dd>
+
+                <dt class="col-sm-3">الوصف</dt>
+                <dd class="col-sm-9">@Model.DonationById.Description</dd>
+
+                <dt class="col-sm-3">عدد أفراد الأسرة</dt>
+                <dd class="col-sm-9">@Model.DonationById.FamilySize</dd>
+
+                <dt class="col-sm-3">مستوى الحاجة</dt>
+                <dd class="col-sm-9">@Model.DonationById.UrgencyLevel</dd>
+
+                <dt class="col-sm-3">الحالة</dt>
+                <dd class="col-sm-9">
+                    @{
+                        var badgeClass = Model.DonationById.Status switch
+                        {
+                            "Submitted" => "status-submitted",
+                            "Verified" => "status-verified",
+                            "Matched" => "status-matched",
+                            "Delivered" => "status-delivered",
+                            _ => ""
+                        };
+                    }
+                    <span class="status-badge @badgeClass">@Model.DonationById.Status</span>
+                </dd>
+
+                <dt class="col-sm-3">تاريخ التقديم</dt>
+                <dd class="col-sm-9">@Model.DonationById.CreatedAt.ToString("yyyy-MM-dd HH:mm")</dd>
+
+                <dt class="col-sm-3">المتبرعون</dt>
+                <dd class="col-sm-9">
+                    @if (Model.Donors.Count == 0)
+                    {
+                        <span class="text-muted">لا يوجد متبرعون حتى الآن</span>
+                    }
+                    else
+                    {
+                        <ul class="list-unstyled mb-0">
+                            @foreach (var donor in Model.Donors)
+                            {
+                                <li>
+                                    الكمية: <strong>@donor.Quantity</strong>
+                                    بتاريخ: @donor.DonatedAt.ToString("yyyy-MM-dd HH:mm")
+                                </li>
+                            }
+                        </ul>
+                    }
+                </dd>
+
+                <dt class="col-sm-3">حالة الطلب</dt>
+                <dd class="col-sm-9">
+                    @if (Model.History.Count == 0)
+                    {
+                        <span class="text-muted">لا يوجد تغيير في حالة الطلب حتى الآن</span>
+                    }
+                    else
+                    {
+                        <ul class="list-unstyled mb-0">
+                            @foreach (var item in Model.History)
+                            {
+                                <li>
+                                    الحالة القديمة: <strong>@item.OldStatus</strong>
+                                    الحالة الجديدة: <strong>@item.NewStatus</strong>
+                                    تاريخ التغيير: @item.ChangedAt.ToString("yyyy-MM-dd HH:mm")
+                                </li>
+                            }
+                        </ul>
+                    }
+                </dd> 
+            </dl>
+        </div>
+        <div class="theme-card-footer">
+            <a asp-page="/Requests/Index" class="btn btn-outline-secondary">رجوع لطلباتي</a>
+            @if (Model.DonationById.Status == "Submitted")
+            {
+                <a asp-page="/Requests/Edit" asp-route-id="@Model.DonationById.Id" class="btn btn-accent-beneficiary">تعديل الطلب</a>
+            }
+            <form method="post" asp-page-handler="Delete" asp-route-id="@Model.DonationById.Id" onsubmit="return confirm('هل أنت متأكد من حذف هذا الطلب؟');">
+                <button type="submit" class="btn btn-danger">حذف الطلب</button>
+            </form>
+        </div>
+    </div>
+</div>

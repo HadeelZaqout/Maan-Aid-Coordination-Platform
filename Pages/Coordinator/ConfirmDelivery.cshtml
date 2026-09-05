@@ -1,0 +1,25 @@
+﻿@page "/Coordinator/ConfirmDelivery/{id}"
+@model Donation.Pages.Coordinator.ConfirmDeliveryModel
+@{
+    ViewData["Title"] = "تأكيد التسليم";
+}
+<div class="container mt-4">
+    <div class="theme-eyebrow eyebrow-coordinator">لوحة التنسيق</div>
+    <div class="theme-card accent-coordinator">
+        <div class="theme-card-header">
+            <h4 class="mb-0">تأكيد تسليم المساعدة</h4>
+        </div>
+        <div class="theme-card-body">
+            <p><strong>الفئة:</strong> @Model.CurrentRequest.Category</p>
+            <p><strong>الوصف:</strong> @Model.CurrentRequest.Description</p>
+
+            <form method="post">
+                <div class="theme-field">
+                    <label asp-for="ConfirmationNotes">ملاحظات التسليم</label>
+                    <textarea asp-for="ConfirmationNotes"></textarea>
+                </div>
+                <button type="submit" class="btn btn-accent-coordinator">تأكيد التسليم</button>
+            </form>
+        </div>
+    </div>
+</div>

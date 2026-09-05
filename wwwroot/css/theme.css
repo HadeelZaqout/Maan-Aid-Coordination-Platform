@@ -1,0 +1,284 @@
+﻿:root {
+    --ink: #1B3A2F;
+    --forest: #1B4332;
+    --forest-deep: #0F2A22;
+    --parchment: #F7F2E9;
+    --parchment-soft: #FBF8F2;
+    --gold: #B8862E;
+    --gold-soft: #E8D5A8;
+    --coral: #D96C4E;
+    --coral-soft: #F4DACE;
+    --line: #DCD3BE;
+    --font-display: 'Fraunces', serif;
+    --font-body: 'IBM Plex Sans Arabic', sans-serif;
+    /* ألوان مصاحبة لكل دور - تستخدم للّمسات فقط، لا تستبدل الهوية الأساسية */
+    --accent-beneficiary: var(--coral);
+    --accent-beneficiary-soft: var(--coral-soft);
+    --accent-donor: var(--gold);
+    --accent-donor-soft: var(--gold-soft);
+    --accent-coordinator: #2E7D5B;
+    --accent-coordinator-soft: #DCE9E3;
+}
+
+body {
+    background: var(--parchment);
+    color: var(--ink);
+    font-family: var(--font-body);
+}
+
+h1, h2, h3, .navbar-brand {
+    font-family: var(--font-display);
+}
+
+/* ===== أزرار الهوية ===== */
+.btn-primary {
+    background-color: var(--forest);
+    border-color: var(--forest);
+    transition: background-color .15s ease, transform .15s ease, box-shadow .15s ease;
+}
+
+    .btn-primary:hover {
+        background-color: var(--forest-deep);
+        border-color: var(--forest-deep);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(15,42,34,0.25);
+    }
+
+.btn-outline-secondary {
+    color: var(--forest);
+    border-color: var(--line);
+    transition: background-color .15s ease, color .15s ease, transform .15s ease;
+}
+
+    .btn-outline-secondary:hover {
+        background-color: var(--forest);
+        border-color: var(--forest);
+        color: var(--parchment-soft);
+        transform: translateY(-1px);
+    }
+
+footer {
+    background: var(--parchment-soft);
+    border-top-color: var(--line) !important;
+}
+
+/* ===== بطاقة عامة ===== */
+.theme-card {
+    background: var(--parchment-soft);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 6px 24px rgba(27,67,50,0.07);
+    transition: box-shadow .2s ease;
+}
+
+    .theme-card:hover {
+        box-shadow: 0 10px 32px rgba(27,67,50,0.11);
+    }
+
+.theme-card-header {
+    background: var(--forest-deep);
+    color: var(--parchment-soft);
+    padding: 18px 24px;
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 600;
+    border-top: 4px solid transparent;
+}
+
+.theme-card-body {
+    padding: 24px;
+}
+
+.theme-card-footer {
+    padding: 16px 24px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    gap: 10px;
+}
+
+/* بطاقات بلون مصاحب حسب السياق - شريط علوي رفيع بلون الدور */
+.theme-card.accent-beneficiary .theme-card-header {
+    border-top-color: var(--accent-beneficiary);
+}
+
+.theme-card.accent-donor .theme-card-header {
+    border-top-color: var(--accent-donor);
+}
+
+.theme-card.accent-coordinator .theme-card-header {
+    border-top-color: var(--accent-coordinator);
+}
+
+/* ===== فورم موحّد ===== */
+.theme-field {
+    margin-bottom: 18px;
+}
+
+    .theme-field label {
+        display: block;
+        font-weight: 600;
+        color: var(--forest-deep);
+        margin-bottom: 6px;
+        font-size: 14px;
+    }
+
+    .theme-field input,
+    .theme-field select,
+    .theme-field textarea {
+        width: 100%;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 10px 14px;
+        background: #fff;
+        font-family: var(--font-body);
+        font-size: 14px;
+        transition: border-color .15s ease, box-shadow .15s ease;
+    }
+
+        .theme-field input:focus,
+        .theme-field select:focus,
+        .theme-field textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px var(--gold-soft);
+        }
+
+/* ===== شارات الحالة ===== */
+.status-badge {
+    display: inline-block;
+    font-size: 12.5px;
+    font-weight: 600;
+    padding: 5px 12px;
+    border-radius: 20px;
+}
+
+.status-submitted {
+    background: var(--coral-soft);
+    color: #9A4A30;
+}
+
+.status-verified {
+    background: var(--gold-soft);
+    color: #7A5A1A;
+}
+
+.status-matched {
+    background: #DCE9E3;
+    color: var(--forest);
+}
+
+.status-delivered {
+    background: var(--forest);
+    color: var(--parchment-soft);
+}
+
+/* ===== جدول موحّد ===== */
+.theme-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--parchment-soft);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 6px 24px rgba(27,67,50,0.06);
+}
+
+    .theme-table th {
+        background: var(--forest-deep);
+        color: var(--parchment-soft);
+        padding: 12px 16px;
+        font-size: 13.5px;
+        font-weight: 600;
+        text-align: right;
+    }
+
+    .theme-table td {
+        padding: 12px 16px;
+        border-top: 1px solid var(--line);
+        font-size: 14px;
+    }
+
+    .theme-table tbody tr {
+        transition: background-color .12s ease;
+    }
+
+        .theme-table tbody tr:hover {
+            background-color: rgba(184,134,46,0.06);
+        }
+
+/* ===== أزرار بلون مصاحب - للاستخدام في صفحات دور معين ===== */
+.btn-accent-beneficiary {
+    background-color: var(--accent-beneficiary);
+    border-color: var(--accent-beneficiary);
+    color: #fff;
+}
+
+    .btn-accent-beneficiary:hover {
+        background-color: #C15A3D;
+        border-color: #C15A3D;
+        color: #fff;
+    }
+
+.btn-accent-donor {
+    background-color: var(--accent-donor);
+    border-color: var(--accent-donor);
+    color: #fff;
+}
+
+    .btn-accent-donor:hover {
+        background-color: #9C7126;
+        border-color: #9C7126;
+        color: #fff;
+    }
+
+.btn-accent-coordinator {
+    background-color: var(--accent-coordinator);
+    border-color: var(--accent-coordinator);
+    color: #fff;
+}
+
+    .btn-accent-coordinator:hover {
+        background-color: #235F47;
+        border-color: #235F47;
+        color: #fff;
+    }
+
+/* eyebrow - نص صغير علوي مع خط زخرفي، لعناوين الصفحات */
+.theme-eyebrow {
+    font-size: 12.5px;
+    letter-spacing: .1em;
+    font-weight: 700;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+    .theme-eyebrow::before {
+        content: "";
+        width: 22px;
+        height: 1px;
+        background: currentColor;
+    }
+
+.eyebrow-beneficiary {
+    color: var(--accent-beneficiary);
+}
+
+.eyebrow-donor {
+    color: var(--accent-donor);
+}
+
+.eyebrow-coordinator {
+    color: var(--accent-coordinator);
+}
+
+/* ===== navbar hover ===== */
+.navbar-nav .nav-link {
+    transition: opacity .15s ease;
+}
+
+    .navbar-nav .nav-link:hover {
+        opacity: .75;
+    }

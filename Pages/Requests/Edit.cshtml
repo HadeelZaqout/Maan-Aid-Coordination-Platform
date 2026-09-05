@@ -1,0 +1,45 @@
+﻿@page "/Requests/Edit/{id}"
+@model Donation.Pages.Requests.EditModel
+@{
+    ViewData["Title"] = "تعديل الطلب";
+}
+
+<div class="theme-eyebrow eyebrow-beneficiary">لوحة المستفيد</div>
+<h2>تعديل طلب المساعدة</h2>
+
+<form method="post">
+    <div class="theme-field">
+        <label asp-for="EditInput.Category">الفئة</label>
+        <select asp-for="EditInput.Category">
+            <option value="">-- اختر الفئة --</option>
+            <option value="طعام">طعام</option>
+            <option value="علاج">علاج</option>
+            <option value="مستلزمات صحية">مستلزمات صحية</option>
+            <option value="ايواء">ايواء</option>
+            <option value="مياه">مياه</option>
+            <option value="ملابس">ملابس</option>
+        </select>
+        <span asp-validation-for="EditInput.Category" class="text-danger"></span>
+    </div>
+    <div class="theme-field">
+        <label asp-for="EditInput.FamilySize">عدد أفراد الأسرة</label>
+        <input asp-for="EditInput.FamilySize" type="number"  />
+        <span asp-validation-for="EditInput.FamilySize" class="text-danger"></span>
+    </div>
+    <div class="theme-field">
+        <label asp-for="EditInput.UrgencyLevel">مستوى الحاجة</label>
+        <select asp-for="EditInput.UrgencyLevel" >
+            <option value="">-- مستوى الحاجة --</option>
+            <option value="1">منخفض</option>
+            <option value="2">متوسط</option>
+            <option value="3">عالي</option>
+        </select>
+        <span asp-validation-for="EditInput.UrgencyLevel" class="text-danger"></span>
+    </div>
+    <div class="theme-field">
+        <label asp-for="EditInput.Description">الوصف</label>
+        <textarea asp-for="EditInput.Description" ></textarea>
+        <span asp-validation-for="EditInput.Description" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-accent-beneficiary">حفظ التعديلات</button>
+</form>

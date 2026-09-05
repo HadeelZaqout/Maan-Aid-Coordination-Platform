@@ -1,0 +1,47 @@
+﻿@page "/Coordinator/ChangeStatus/{id}"
+@model Donation.Pages.Coordinator.ChangeStatusModel
+@{
+    ViewData["Title"] = "تغيير حالة الطلب";
+}
+
+<div class="container mt-4">
+    <div class="theme-eyebrow eyebrow-coordinator">لوحة التنسيق</div>
+    <div class="theme-card accent-coordinator">
+        <div class="theme-card-header">
+            <h4 class="mb-0">مراجعة الطلب وتغيير الحالة</h4>
+        </div>
+        <div class="theme-card-body">
+            <dl class="row">
+                <dt class="col-sm-3">الفئة</dt>
+                <dd class="col-sm-9">@Model.CurrentRequest.Category</dd>
+
+                <dt class="col-sm-3">الوصف</dt>
+                <dd class="col-sm-9">@Model.CurrentRequest.Description</dd>
+
+                <dt class="col-sm-3">عدد أفراد الأسرة</dt>
+                <dd class="col-sm-9">@Model.CurrentRequest.FamilySize</dd>
+
+                <dt class="col-sm-3">الحالة الحالية</dt>
+                <dd class="col-sm-9">
+                    @{
+                        var badgeClass =Model.CurrentRequest.Status switch
+                        {
+                            "Submitted" => "status-submitted",
+                            "Verified" => "status-verified",
+                            "Matched" => "status-matched",
+                            "Delivered" => "status-delivered",
+                            _ => ""
+                        };
+                    }
+                    <span class="status-badge @badgeClass">@Model.CurrentRequest.Status</span>
+                </dd>
+            </dl>
+
+            <form method="post">
+                <button type="submit" class="btn btn-accent-coordinator">
+                    الموافقة والانتقال إلى: @Model.NextStatus
+                </button>
+            </form>
+        </div>
+    </div>
+</div>

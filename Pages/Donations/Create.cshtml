@@ -1,0 +1,30 @@
+﻿@page
+@model Donation.Pages.Donations.CreateModel
+@{
+    ViewData["Title"] = "تبرع للطلب";
+}
+
+<div class="container mt-4">
+    <div class="theme-eyebrow eyebrow-donor">لوحة المتبرع</div>
+    <h2>تبرع لهذا الطلب</h2>
+
+    <div class="theme-card accent-donor">
+        <div class="theme-card-header">
+            <h4 class="mb-0">تفاصيل الطلب</h4>
+        </div>
+        <div class="theme-card-body">
+            <p><strong>الفئة:</strong> @Model.donationRequest.Category</p>
+            <p><strong>الوصف:</strong> @Model.donationRequest.Description</p>
+            <p><strong>عدد أفراد الأسرة:</strong> @Model.donationRequest.FamilySize</p>
+        </div>
+    </div>
+
+    <form method="post" asp-route-requestId="@Model.donationRequest.Id">
+        <div class="theme-field">
+            <label asp-for="DonationInput.Quantity">الكمية / المبلغ</label>
+            <input asp-for="DonationInput.Quantity" type="number" />
+            <span asp-validation-for="DonationInput.Quantity" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-accent-donor mt-2">تأكيد التبرع</button>
+    </form>
+</div>

@@ -1,0 +1,31 @@
+﻿@page
+@model Donation.Pages.Donations.IndexModel
+
+<div class="theme-eyebrow eyebrow-donor">لوحة المتبرع</div>
+<h2>الطلبات المتاحة للتبرع</h2>
+<a asp-page="/Donations/MyDonations" class="btn btn-accent-donor mb-3">تبرعاتي</a>
+<table class="theme-table">
+    <thead>
+        <tr>
+            <th>الفئة</th>
+            <th>الوصف</th>
+            <th>عدد أفراد الأسرة</th>
+            <th>مستوى الحاجة</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var request in Model.Requests)
+        {
+            <tr>
+                <td>@request.Category</td>
+                <td>@request.Description</td>
+                <td>@request.FamilySize</td>
+                <td>@request.UrgencyLevel</td>
+                <td>
+                    <a asp-page="/Donations/Create" asp-route-requestId="@request.Id" class="btn btn-accent-donor">تبرع</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

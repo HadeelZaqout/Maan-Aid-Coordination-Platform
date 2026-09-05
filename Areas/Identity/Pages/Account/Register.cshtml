@@ -1,0 +1,50 @@
+@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "إنشاء حساب";
+}
+<div class="container mt-4" style="max-width: 480px;">
+    <div class="theme-card">
+        <div class="theme-card-header">
+            <h1 class="mb-0">@ViewData["Title"]</h1>
+        </div>
+        <div class="theme-card-body">
+            <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+                <div class="theme-field">
+                    <label asp-for="Input.FullName">الاسم الكامل</label>
+                    <input asp-for="Input.FullName" autocomplete="username" aria-required="true" placeholder="" />
+                    <span asp-validation-for="Input.FullName" class="text-danger"></span>
+                </div>
+                <div class="theme-field">
+                    <label asp-for="Input.Email">البريد الإلكتروني</label>
+                    <input asp-for="Input.Email" autocomplete="username" aria-required="true" placeholder="name@example.com" />
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
+                <div class="theme-field">
+                    <label asp-for="Input.Password">كلمة المرور</label>
+                    <input asp-for="Input.Password" autocomplete="new-password" aria-required="true" placeholder="password" />
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                </div>
+                <div class="theme-field">
+                    <label asp-for="Input.ConfirmPassword">تأكيد كلمة المرور</label>
+                    <input asp-for="Input.ConfirmPassword" autocomplete="new-password" aria-required="true" placeholder="password" />
+                    <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                </div>
+                <div class="theme-field">
+                    <label asp-for="Input.Role">نوع الحساب</label>
+                    <select asp-for="Input.Role">
+                        <option value="">-- اختر دورك --</option>
+                        <option value="Donor">متبرع</option>
+                        <option value="Beneficiary">مستفيد</option>
+                    </select>
+                    <span asp-validation-for="Input.Role" class="text-danger"></span>
+                </div>
+                <button id="registerSubmit" type="submit" class="w-100 btn btn-primary">إنشاء الحساب</button>
+            </form>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

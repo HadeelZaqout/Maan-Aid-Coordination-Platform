@@ -1,0 +1,45 @@
+﻿@page
+@model Donation.Pages.Requests.IndexModel
+
+<div class="theme-eyebrow eyebrow-beneficiary">لوحة المستفيد</div>
+<h2>طلباتي</h2>
+<a asp-page="/Requests/Create" class="btn btn-accent-beneficiary mb-3">سجل طلب جديد</a>
+<table class="theme-table">
+    <thead>
+        <tr>
+            <th>الفئة</th>
+            <th>الوصف</th>
+            <th>عدد افراد الاسرة</th>
+            <th>مستوى الحاجة</th>
+            <th>الحالة</th>
+            <th>تاريخ التقديم</th>
+            <th>التفاصيل</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var request in Model.Mydonations)
+        {
+            <tr>
+                <td>@request.Category</td>
+                <td>@request.Description</td>
+                <td>@request.FamilySize</td>
+                <td>@request.UrgencyLevel</td>
+                <td>
+                    @{
+                        var badgeClass = request.Status switch
+                        {
+                            "Submitted" => "status-submitted",
+                            "Verified" => "status-verified",
+                            "Matched" => "status-matched",
+                            "Delivered" => "status-delivered",
+                            _ => ""
+                        };
+                    }
+                    <span class="status-badge @badgeClass">@request.Status</span>
+                </td>
+                <td>@request.CreatedAt.ToString("yyyy-MM-dd HH:mm")</td>
+                <td><a asp-page="/Requests/Details" asp-route-id="@request.Id" class="btn btn-sm btn-outline-secondary">التفاصيل</a></td>
+            </tr>
+        }
+    </tbody>
+</table>

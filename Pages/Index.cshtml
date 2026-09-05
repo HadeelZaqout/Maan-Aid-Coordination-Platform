@@ -1,0 +1,101 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "الرئيسية";
+}
+
+<div class="hero" style="padding: 60px 20px 40px; max-width: 1000px; margin: 0 auto;">
+    <div style="font-size:13px; letter-spacing:0.12em; color: var(--gold); font-weight:600; margin-bottom:18px;">
+        منصة تنسيق مفتوحة وشفافة
+    </div>
+
+    <h1 style="font-family: var(--font-display); font-size:42px; font-weight:600; line-height:1.2; margin:0 0 20px; color: var(--forest-deep);">
+        نوصل المساعدة لمستحقيها، <span style="color: var(--coral);">بشفافية كاملة</span> من أول طلب لحد التسليم.
+    </h1>
+
+    <p style="font-size:17px; color:#4A5A50; max-width:560px; margin:0 0 30px;">
+        كل طلب مساعدة بينتقل عبر مراحل واضحة، وكل متبرع بيقدر يتابع وين راح تبرعه بالضبط.
+    </p>
+
+    <div style="display:flex; gap:14px; margin-bottom:50px; flex-wrap:wrap;">
+        <a asp-page="/Requests/Create" class="btn btn-primary">أحتاج مساعدة</a>
+        <a asp-page="/Donations/Index" class="btn btn-outline-secondary">أريد أن أتبرع</a>
+    </div>
+
+    <!-- الإحصائيات الحقيقية -->
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background: var(--line); border:1px solid var(--line); border-radius:14px; overflow:hidden; margin-bottom:60px;">
+        <div style="background: var(--parchment-soft); padding:24px;">
+            <div style="font-family: var(--font-display); font-size:30px; font-weight:600; color: var(--forest);">@Model.DeliveredNo</div>
+            <div style="font-size:13px; color:#71806F; margin-top:4px;">طلب تم تسليمه</div>
+        </div>
+        <div style="background: var(--parchment-soft); padding:24px;">
+            <div style="font-family: var(--font-display); font-size:30px; font-weight:600; color: var(--forest);">@Model.MatchedNo</div>
+            <div style="font-size:13px; color:#71806F; margin-top:4px;">طلب قيد المطابقة</div>
+        </div>
+        <div style="background: var(--parchment-soft); padding:24px;">
+            <div style="font-family: var(--font-display); font-size:30px; font-weight:600; color: var(--forest);">@Model.DonorsNo</div>
+            <div style="font-size:13px; color:#71806F; margin-top:4px;">متبرع نشط</div>
+        </div>
+    </div>
+
+    <!-- كيف تعمل المنصة -->
+    <div style="margin-bottom:60px;">
+        <h2 style="font-family: var(--font-display); font-size:26px; font-weight:600; margin-bottom:8px; color: var(--forest-deep);">كيف تعمل المنصة</h2>
+        <p style="color:#71806F; margin-bottom:30px;">أربع مراحل واضحة لكل طلب، بدون أي غموض بأي لحظة.</p>
+        <div style="display:flex; gap:20px; flex-wrap:wrap;">
+            <div style="flex:1; min-width:180px;">
+                <div style="width:36px;height:36px;border-radius:50%;background:var(--parchment-soft);border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:600;color:var(--gold);margin-bottom:12px;">١</div>
+                <h4 style="font-size:15px; font-weight:600; margin:0 0 6px; color: var(--forest-deep);">تسجيل الطلب</h4>
+                <p style="font-size:13.5px; color:#71806F; margin:0;">المستفيد بيسجل احتياجه بالتفصيل ودرجة الأولوية.</p>
+            </div>
+            <div style="flex:1; min-width:180px;">
+                <div style="width:36px;height:36px;border-radius:50%;background:var(--parchment-soft);border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:600;color:var(--gold);margin-bottom:12px;">٢</div>
+                <h4 style="font-size:15px; font-weight:600; margin:0 0 6px; color: var(--forest-deep);">التحقق</h4>
+                <p style="font-size:13.5px; color:#71806F; margin:0;">المنسق بيراجع ويتحقق من صحة الطلب.</p>
+            </div>
+            <div style="flex:1; min-width:180px;">
+                <div style="width:36px;height:36px;border-radius:50%;background:var(--parchment-soft);border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:600;color:var(--gold);margin-bottom:12px;">٣</div>
+                <h4 style="font-size:15px; font-weight:600; margin:0 0 6px; color: var(--forest-deep);">المطابقة</h4>
+                <p style="font-size:13.5px; color:#71806F; margin:0;">ربط الطلب بتبرع مناسب من المتبرعين المتاحين.</p>
+            </div>
+            <div style="flex:1; min-width:180px;">
+                <div style="width:36px;height:36px;border-radius:50%;background:var(--parchment-soft);border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:600;color:var(--gold);margin-bottom:12px;">٤</div>
+                <h4 style="font-size:15px; font-weight:600; margin:0 0 6px; color: var(--forest-deep);">التسليم</h4>
+                <p style="font-size:13.5px; color:#71806F; margin:0;">تأكيد الاستلام وإغلاق السجل بشفافية كاملة.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ثلاث بوابات - كل دور، مساره الخاص -->
+    <div style="margin-bottom:20px;">
+        <h2 style="font-family: var(--font-display); font-size:26px; font-weight:600; margin-bottom:8px; color: var(--forest-deep);">كل دور، مساره الخاص</h2>
+        <p style="color:#71806F; margin-bottom:30px;">ثلاث بوابات مختلفة بحسب دورك على المنصة.</p>
+        <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:20px;">
+            <div class="theme-card accent-beneficiary">
+                <div class="theme-card-body">
+                    <span class="status-badge status-submitted" style="margin-bottom:16px; display:inline-block;">مستفيد</span>
+                    <h3 style="font-family: var(--font-display); font-size:20px; font-weight:600; margin:0 0 8px; color: var(--forest-deep);">أحتاج مساعدة</h3>
+                    <p style="font-size:14px; color:#71806F; margin:0 0 18px;">سجّل طلبك وتابع حالته خطوة بخطوة حتى يصلك.</p>
+                    <a asp-page="/Requests/Create" class="btn btn-accent-beneficiary btn-sm">سجّل طلبك ←</a>
+                </div>
+            </div>
+            <div class="theme-card accent-donor">
+                <div class="theme-card-body">
+                    <span class="status-badge status-verified" style="margin-bottom:16px; display:inline-block;">متبرع</span>
+                    <h3 style="font-family: var(--font-display); font-size:20px; font-weight:600; margin:0 0 8px; color: var(--forest-deep);">أريد أن أتبرع</h3>
+                    <p style="font-size:14px; color:#71806F; margin:0 0 18px;">تصفّح الطلبات الموثّقة، واختر أين يذهب تبرعك.</p>
+                    <a asp-page="/Donations/Index" class="btn btn-accent-donor btn-sm">تصفّح الطلبات ←</a>
+                </div>
+            </div>
+            <div class="theme-card accent-coordinator">
+                <div class="theme-card-body">
+                    <span class="status-badge status-matched" style="margin-bottom:16px; display:inline-block;">منسّق ميداني</span>
+                    <h3 style="font-family: var(--font-display); font-size:20px; font-weight:600; margin:0 0 8px; color: var(--forest-deep);">أراجع وأتحقق</h3>
+                    <p style="font-size:14px; color:#71806F; margin:0 0 18px;">راجع الطلبات وتابع كل حالة حتى التسليم النهائي.</p>
+                    <a asp-page="/Coordinator/Index" class="btn btn-accent-coordinator btn-sm">لوحة التنسيق ←</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

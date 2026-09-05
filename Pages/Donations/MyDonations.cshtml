@@ -1,0 +1,27 @@
+﻿@page
+@model Donation.Pages.Donations.MyDonationsModel
+@{
+    ViewData["Title"] = "تبرعاتي";
+}
+<div class="theme-eyebrow eyebrow-donor">لوحة المتبرع</div>
+<h2>تبرعاتي</h2>
+
+<table class="theme-table">
+    <thead>
+        <tr>
+            <th>الكمية</th>
+            <th>تاريخ التبرع</th>
+            <th>رقم الطلب</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var donations in Model.MyDonationsList)
+        {
+            <tr>
+                <td>@donations.Quantity</td>
+                <td>@donations.DonatedAt.ToString("yyyy-MM-dd HH:mm")</td>
+                <td>@donations.RequestId</td>
+            </tr>
+        }
+    </tbody>
+</table>

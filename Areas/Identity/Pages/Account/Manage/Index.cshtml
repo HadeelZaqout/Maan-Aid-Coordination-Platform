@@ -1,0 +1,37 @@
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "الملف الشخصي";
+    ViewData["ActivePage"] = ManageNavPages.Index;
+}
+
+<div class="container mt-4" style="max-width: 480px;">
+    <div class="theme-card">
+        <div class="theme-card-header">
+            <h4 class="mb-0">@ViewData["Title"]</h4>
+        </div>
+        <div class="theme-card-body">
+            <partial name="_StatusMessage" for="StatusMessage" />
+            <form id="profile-form" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+
+                <div class="theme-field">
+                    <label asp-for="Username">اسم المستخدم</label>
+                    <input asp-for="Username" placeholder="اسم المستخدم" disabled />
+                </div>
+
+                <div class="theme-field">
+                    <label asp-for="Input.PhoneNumber">رقم الهاتف</label>
+                    <input asp-for="Input.PhoneNumber" placeholder="أدخل رقم هاتفك" />
+                    <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+                </div>
+
+                <button id="update-profile-button" type="submit" class="w-100 btn btn-primary">حفظ</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
